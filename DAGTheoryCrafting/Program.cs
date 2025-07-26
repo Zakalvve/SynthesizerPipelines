@@ -1,20 +1,19 @@
-﻿using Audio.Processing.Components;
-using Audio.Processing.Pipelines;
+﻿using Audio.Processing.Pipelines;
 
-var startNode = new Node<SimpleBuffer<double>, double, double, double>(new AddOne()); //2
-var secondNode = new Node<SimpleBuffer<double>, double,double, double>(new MultiplyByTwo()); //4
-var thirdNode = new Node<SimpleBuffer<double>, double, double, double>(new MultiplyByTwo()); //8
-var fourthNode = new Node<SimpleBuffer<double>, double, double, double>(new MinusOne()); //7
-var fifthNode = new Node<SimpleBuffer<double>, double, double, double>(new HalfInput()); //3.5
-var sixthNode = new Node<SimpleBuffer<double>, double, double, int>(new ToInteger()); // 3
+var startNode = new Node<double, double>(new AddOne()); //2
+var secondNode = new Node<double, double>(new MultiplyByTwo()); //4
+var thirdNode = new Node<double, double>(new MultiplyByTwo()); //8
+var fourthNode = new Node<double, double>(new MinusOne()); //7
+var fifthNode = new Node<double, double>(new HalfInput()); //3.5
+var sixthNode = new Node<double, int>(new ToInteger()); // 3
 
 var multiNode = new MultiNode<double, double>(new Average());
 var multiNodeTwo = new MultiNode<double, double>(new Average());
 
-var outputNode = new Node<SimpleBuffer<int>, int, int, double>(new ToDouble());
-var outputNodeTwo = new Node<SimpleBuffer<double>, double, double, double>(new PassThrough<double>());
-var outputNodeThree = new Node<SimpleBuffer<double>, double, double, double>(new PassThrough<double>());
-var outputNodeFour = new Node<SimpleBuffer<double>, double, double, double>(new PassThrough<double>());
+var outputNode = new Node<int, double>(new ToDouble());
+var outputNodeTwo = new Node<double, double>(new PassThrough<double>());
+var outputNodeThree = new Node<double, double>(new PassThrough<double>());
+var outputNodeFour = new Node<double, double>(new PassThrough<double>());
 
 
 startNode.Connect(secondNode);
